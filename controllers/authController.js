@@ -33,7 +33,7 @@ router.post('/register', async (req, res) =>{
       const password = req.body.password;
       const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
       const coustomerEntry = {};
-      coustomerEntry.fullname = req.body.fullname;
+      coustomerEntry.email = req.body.email;
       coustomerEntry.username = req.body.username;
       coustomerEntry.password = passwordHash;
       console.log(coustomerEntry, ' this is coustomerEntry')
