@@ -4,15 +4,30 @@ const Chef = require('../models/chefSchema.js');
 const Coustomer = require('../models/coustomerSchema.js');
 const bcrypt = require('bcrypt');
 
+
+async function test() {
+  // No unhandled rejection!
+  await Promise.reject(new Error('test'));
+}
+
+test().catch(() => {});
+
 router.post('/register', async (req, res) =>{
   try {
     if(req.body.occupation === 'chef'){
       const password = req.body.password;
      // Create our hash
-      const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+      const passwordHash = await bcrypt.hashSync(password, bcrypt.genSaltSync(10));
       console.log(passwordHash, ' this is passwordHash')
      // Create an object to put into our database into the User Model
       const userEntry = {};
+      userEntry.picture = req.body.picture;
+      userEntry.experience = req.body.experience;
+      userEntry.about = req.body.about;
+      userEntry.starter = req.body.starter;
+      userEntry.main = req.body.starter;
+      userEntry.dessert = req.body.dessert;
+      userEntry.drink = req.body.drink;
       userEntry.email = req.body.email;
       userEntry.username = req.body.username;
       userEntry.password = passwordHash;
@@ -31,7 +46,7 @@ router.post('/register', async (req, res) =>{
       })
     } else {
       const password = req.body.password;
-      const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+      const passwordHash = await bcrypt.hashSync(password, bcrypt.genSaltSync(10));
       const coustomerEntry = {};
       coustomerEntry.email = req.body.email;
       coustomerEntry.username = req.body.username;

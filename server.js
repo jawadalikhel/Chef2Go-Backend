@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const cors = require('cors');
 const authController = require('./controllers/authController');
+const chefController = require('./controllers/chefController');
 require('./db/db');
 
 app.use(bodyParser.urlencoded({extended: false}));
@@ -24,6 +25,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use('/auth', authController);
+app.use('/chef', chefController);
 
 app.listen(process.env.PORT || 9000, ()  =>{
   console.log('Server is live on 9000');
