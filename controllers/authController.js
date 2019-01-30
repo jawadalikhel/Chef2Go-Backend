@@ -25,7 +25,7 @@ router.post('/register', async (req, res) =>{
       userEntry.experience = req.body.experience;
       userEntry.about = req.body.about;
       userEntry.starter = req.body.starter;
-      userEntry.main = req.body.starter;
+      userEntry.main = req.body.main;
       userEntry.dessert = req.body.dessert;
       userEntry.drink = req.body.drink;
       userEntry.email = req.body.email;
@@ -48,6 +48,9 @@ router.post('/register', async (req, res) =>{
       const password = req.body.password;
       const passwordHash = await bcrypt.hashSync(password, bcrypt.genSaltSync(10));
       const coustomerEntry = {};
+      coustomerEntry.fullname = req.body.fullname;
+      coustomerEntry.address = req.body.address;
+      coustomerEntry.phone = req.body.phone;
       coustomerEntry.email = req.body.email;
       coustomerEntry.username = req.body.username;
       coustomerEntry.password = passwordHash;
@@ -85,7 +88,7 @@ router.post('/login',async (req, res) =>{
             req.session.save();
             res.json({
               status: 200,
-              data: 'login successful1'
+              data: 'login successful'
             })
             console.log('this login went successful here')
           } else {

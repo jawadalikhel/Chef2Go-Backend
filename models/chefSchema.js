@@ -10,8 +10,8 @@ const ChefSchema = new mongoose.Schema({
   dessert: String,
   drink: String,
   email: String,
-  username: {type: String},
-  password: {type: String},
+  username: String,
+  password: String,
 })
 
 module.exports = mongoose.model('User', ChefSchema);

@@ -19,4 +19,18 @@ router.get('/allChefs', async (req, res) =>{
   }
 })
 
+
+
+router.get('/:id', async(req, res) =>{
+  try {
+    const getChef = await Chef.findById(req.params.id)
+    res.json({
+      status: 200,
+      data: getChef
+    })
+  } catch (err) {
+    console.log(err, ' this is error in /:id')
+  }
+})
+
 module.exports = router;
