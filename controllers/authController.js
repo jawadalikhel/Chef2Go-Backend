@@ -154,6 +154,22 @@ router.get('/chefs', async(req, res) =>{
   }
 })
 
+router.get('/coustomers', async(req, res) =>{
+  try {
+    const allcos = await Coustomer.find();
+    console.log(allcos, ' all the coustomers');
+    res.json({
+      status: 200,
+      data: allcos
+    })
+  } catch (err) {
+    res.json({
+      status: 401,
+      data: err.message
+    })
+  }
+})
+
 router.get('/logout', (req, res) =>{
   req.session.destroy((err) =>{
     if(err){

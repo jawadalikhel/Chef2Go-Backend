@@ -3,7 +3,7 @@ const router = express.Router();
 const Chef = require('../models/chefSchema.js');
 
 
-router.get('/allChefs', async (req, res) =>{
+router.get('/chefs', async (req, res) =>{
   try {
     const allChefs = await Chef.find();
     console.log(allChefs, 'all the chefss')
@@ -21,7 +21,7 @@ router.get('/allChefs', async (req, res) =>{
 
 
 
-router.get('/:id', async(req, res) =>{
+router.get('/chefs/:id', async(req, res) =>{
   try {
     const getChef = await Chef.findById(req.params.id)
     res.json({
